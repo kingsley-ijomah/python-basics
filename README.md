@@ -4,6 +4,7 @@ Python Documentation -- [https://docs.python.org/3.8/tutorial/index.html](https:
 Geeks for Geeks -- [https://www.geeksforgeeks.org/python-programming-language](https://www.geeksforgeeks.org/python-programming-language).\s\s
 Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exercism.io/my/tracks/python).\s\s
 
+
 - [ ] Installing python
 - [ ] Control flows
 - [ ] Defining functions
