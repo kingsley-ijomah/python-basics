@@ -1,8 +1,8 @@
 # Learn Python Basics - Road Map
 
-python documentation -- (https://docs.python.org/3.8/tutorial/index.html)\
-geeks for geeks -- (https://www.geeksforgeeks.org/python-programming-language/)\
-exercism python excercises -- (https://exercism.io/my/tracks/python)\
+Python Documentation -- [https://docs.python.org/3.8/tutorial/index.html](https://docs.python.org/3.8/tutorial/index.html).\s\s
+Geeks for Geeks -- [https://www.geeksforgeeks.org/python-programming-language](https://www.geeksforgeeks.org/python-programming-language).\s\s
+Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exercism.io/my/tracks/python).\s\s
 
 - [ ] Installing python
 - [ ] Control flows
