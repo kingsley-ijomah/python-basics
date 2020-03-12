@@ -5,7 +5,7 @@ Geeks for Geeks -- [https://www.geeksforgeeks.org/python-programming-language](h
 Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exercism.io/my/tracks/python).\s\s
 
 
-- [ ] Installing python
+- [x] Installing python
 - [ ] Control flows
 - [ ] Defining functions
 - [ ] Data structures
