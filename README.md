@@ -9,7 +9,7 @@ Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exe
 
 - [x] Installing python
 - [x] Data Types
-- [ ] Variables
+- [x] Variables
 - [ ] Loops & Conditional
 - [ ] Defining functions
 - [ ] Modules
