@@ -13,7 +13,7 @@ Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exe
 - [x] Loops & Conditional
 - [x] Defining functions
 - [x] Modules
-- [ ] Scope & namespaces
+- [x] Scope & namespaces
 - [ ] Class definition
 - [ ] Class objects
 - [ ] Instance objects
