@@ -11,8 +11,8 @@ Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exe
 - [x] Data Types
 - [x] Variables
 - [x] Loops & Conditional
-- [ ] Defining functions
-- [ ] Modules
+- [x] Defining functions
+- [x] Modules
 - [ ] Scope & namespaces
 - [ ] Class definition
 - [ ] Class objects
