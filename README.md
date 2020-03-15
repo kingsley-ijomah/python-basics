@@ -10,7 +10,7 @@ Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exe
 - [x] Installing python
 - [x] Data Types
 - [x] Variables
-- [ ] Loops & Conditional
+- [x] Loops & Conditional
 - [ ] Defining functions
 - [ ] Modules
 - [ ] Scope & namespaces
