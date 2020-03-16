@@ -14,9 +14,9 @@ Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exe
 - [x] Defining functions
 - [x] Modules
 - [x] Scope & namespaces
-- [ ] Class definition
-- [ ] Class objects
+- [x] Class definitions
 - [ ] Instance objects
+- [ ] Class objects
 - [ ] Method objects
 - [ ] Class variables
 - [ ] Instance variables
