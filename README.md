@@ -17,8 +17,7 @@ Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exe
 - [x] Class definitions
 - [x] Instance, Class and Static methods
 - [x] Class & Instance variables
-- [ ] Inheritance
-- [ ] Multiple inheritance
+- [x] Inheritance
 - [ ] Virtual Environments & Packages
 - [ ] Manage packages with pip
 
