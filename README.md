@@ -16,8 +16,7 @@ Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exe
 - [x] Scope & namespaces
 - [x] Class definitions
 - [x] Instance, Class and Static methods
-- [ ] Class variables
-- [ ] Instance variables
+- [x] Class & Instance variables
 - [ ] Inheritance
 - [ ] Multiple inheritance
 - [ ] Virtual Environments & Packages
