@@ -18,4 +18,3 @@ Exercism Python Excercises -- [https://exercism.io/my/tracks/python](https://exe
 - [x] Instance, Class and Static methods
 - [x] Class & Instance variables
 - [x] Inheritance
-
