@@ -30,10 +30,6 @@ POSITIONS = [
 
 def recite(start_verse, end_verse):
     verses = VERSES[start_verse-1:end_verse]
-
-    if start_verse == 1 and end_verse == 1:
-        position = POSITIONS[VERSES.index(verses[0])]
-        return [f'On the {position} day of Christmas my true love gave to me: {verses[0]}']
     
     full_verses = []
 
@@ -41,7 +37,11 @@ def recite(start_verse, end_verse):
         build_verses = VERSES[1:VERSES.index(verse)+1]
         build_verses.reverse()
 
-        build_verses.append(f'and {VERSES[0]}')
+        if end_verse == 1:
+            build_verses.append(VERSES[0])
+        else:
+            build_verses.append(f'and {VERSES[0]}')
+
         build_verses = ', '.join(build_verses)
 
         position = POSITIONS[VERSES.index(verse)]
