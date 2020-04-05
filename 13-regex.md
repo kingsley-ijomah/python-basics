@@ -1,11 +1,17 @@
+# automate boring stuff with python pdf
+
 https://pythex.org/
--------------------
+https://regex101.com/
+https://www.hackerrank.com/domains/regex
+http://www.restore.ac.uk/geo-refer/38330mtuks00y19740000.php
+---------------------
 
 import re
 
 phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
 phoneNumRegex = re.compile(r'\d{3}-\d{3}-\d{4}')
 
+07412-712-269
 mo = phoneNumRegex.search('My number is 415-555-4242.')
 print('Phone number found: ' + mo.group())
 Phone number found: 415-555-4242
@@ -233,3 +239,26 @@ spam$ means the string must end with spam.
 \D, \W, and \S match anything except a digit, word, or space character,respectively.
 [abc] matches any character between the brackets (such as a, b, or c).
 [^abc] matches any character that isn’t between the brackets.
+-
+
+Substituting Strings with the sub() Method
+------------------------------------------
+namesRegex = re.compile(r'Agent \w+')
+namesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob.')
+>>> 'CENSORED gave the secret documents to CENSORED.'
+
+Managing Complex Regexes
+------------------------
+phoneRegex = re.compile(r'((\d{3}|\(\d{3}\))?(\s|-|\.)?\d{3}(\s|-|\.)\d{4}
+(\s*(ext|x|ext.)\s*\d{2,5})?)')
+
+above can be transformed to below
+---------------------------------
+phoneRegex = re.compile(r'''(
+ (\d{3}|\(\d{3}\))?             # area code
+ (\s|-|\.)?                     # separator
+ \d{3}                          # first 3 digits
+ (\s|-|\.)                      # separator
+ \d{4}                          # last 4 digits
+ (\s*(ext|x|ext.)\s*\d{2,5})?   # extension
+ )''', re.VERBOSE)
