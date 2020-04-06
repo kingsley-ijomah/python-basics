@@ -77,81 +77,102 @@ mo.group(1)
 mo.group(2)
 >>> '555-4242'
 
+match any char with (.)
+-----------------------
+https://regex101.com/
 
-pipe acts like an or
---------------------
-heroRegex = re.compile (r'Batman|Tina Fey')
-mo1 = heroRegex.search('Batman and Tina Fey')
-mo1.group()
->>> 'Batman'
-mo2 = heroRegex.search('Tina Fey and Batman')
-mo2.group()
->>> 'Tina Fey'
+....\.....\.....\....
+.{4}\..{4}\..{4}\..{3}
 
-match multiple with pipe & parentheses
---------------------------------------
-batRegex = re.compile(r'Bat(man|mobile|copter|bat)')
-mo = batRegex.search('Batmobile lost a wheel')
-mo.group()
->>> 'Batmobile'
-mo.group(1)
->>> 'mobile'
+matches:
+####.####.####.###
+1234.1234.1234.123
+????.????.????.???
+but not:
+###.###.###.###
+####.###.####.####
 
-matching with question mark for optinoal
+
+pipe acts like an or (|)
+------------------------
+r'Batman|Tina Fey'
+
+search: Batman and Tina Fey
+matches: 'Batman'
+
+search: Tina Fey and Batman
+matches Tina Fey
+
+match multiple with pipe & parentheses(||)
+------------------------------------------
+r'Bat(man|mobile|copter|bat)'
+
+search: 'Batmobile lost a wheel'
+matches:
+>>> Batmobile
+>>> mobile
+
+matching with question mark for optinoal (?)
 matches area code and no area code
-----------------------------------------
-phoneRegex = re.compile(r'(\d\d\d-)?\d\d\d-\d\d\d\d')
-mo1 = phoneRegex.search('My number is 415-555-4242')
-mo1.group()
+--------------------------------------------
+r'(\d\d\d-)?\d\d\d-\d\d\d\d'
+
+search: My number is 415-555-4242
+matches:
 >>> '415-555-4242'
-mo2 = phoneRegex.search('My number is 555-4242')
-mo2.group()
+search: My number is 555-4242
+
+matches:
 >>> '555-4242'
 
 match zero or more with the star (*)
 ------------------------------------
-batRegex = re.compile(r'Bat(wo)*man')
-mo = batRegex.search('The Adventures of Batwowowowoman')
-mo.group()
+r'Bat(wo)*man'
+
+search: The Adventures of Batwowowowoman
+matches:
 >>> 'Batwowowowoman'
+
+search: The Adventures of Batman
+matches: Batman
 
 match one or more with the plus (+)
 -----------------------------------
->>> batRegex = re.compile(r'Bat(wo)+man')
->>> mo1 = batRegex.search('The Adventures of Batwoman')
->>> mo1.group()
-'Batwoman'
+r'Bat(wo)+man'
 
->>> mo2 = batRegex.search('The Adventures of Batwowowowoman')
->>> mo2.group()
-'Batwowowowoman'
+search: The Adventures of Batwowowowoman
+>>> 'Batwowowowoman'
 
->>> mo3 = batRegex.search('The Adventures of Batman')
->>> mo3 == None
-True
+search: The Adventures of Batman
+matches: None
 
-Matching Specific Repetitions with Braces
------------------------------------------
-haRegex = re.compile(r'(Ha){3}')
-mo1 = haRegex.search('HaHaHa')
-mo1.group()
+
+Matching Specific Repetitions with Braces {}
+--------------------------------------------
+r'(Ha){3}'
+search: 'HaHaHa'
+
+matches: 
 >>> 'HaHaHa'
 
-mo2 = haRegex.search('Ha')
-mo2
->>> True
+search: 'Ha'
 
-Greedy and Non-greedy Matching
-------------------------------
-greedyHaRegex = re.compile(r'(Ha){3,5}')
-mo1 = greedyHaRegex.search('HaHaHaHaHa')
-mo1.group()
->>> 'HaHaHaHaHa'
+matches: 
+>>> None
 
-nongreedyHaRegex = re.compile(r'(Ha){3,5}?')
-mo2 = nongreedyHaRegex.search('HaHaHaHaHa')
-mo2.group()
->>> 'HaHaHa'
+Greedy and Non-greedy Matching {}?
+----------------------------------
+r'(Ha){3,5}'
+
+search: HaHaHaHaHa
+matches:
+>>> HaHaHaHaHa
+
+r'(Ha){3,5}?'
+search: HaHaHaHaHa
+
+matches:
+>>> HaHaHa
 
 The findall() vs search()
 -------------------------
@@ -173,80 +194,94 @@ Character Classes
 \s  Any space, tab, or newline character. (Think of this as matching “space” characters.)
 \S  Any character that is not a space, tab, or newline.
 
-xmasRegex = re.compile(r'\d+\s\w+')
-xmasRegex.findall('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids)
+combine symbols (\d \s \w+)
+---------------------------
+r'\d+\s\w+'
+search: ('12 drummers, 11 pipers, 10 lords, 9 ladies, 8 maids)
+
+matches:
 >>> ['12 drummers', '11 pipers', '10 lords', '9 ladies', '8 maids']
 
-Making Your Own Character Classes[]
------------------------------------
-vowelRegex = re.compile(r'[aeiouAEIOU]')
-vowelRegex.findall('RoboCop eats')
+Making Your Own Character Classes ([])
+--------------------------------------
+r'[aeiouAEIOU]')
+search: RoboCop eats
+
+matches:
 >>> ['o', 'o', 'o', 'e', 'a']
 
 
 negative character class (^)
 caret within [] is diff to care outside 
 ---------------------------------------
-consonantRegex = re.compile(r'[^aeiouAEIOU]')
-consonantRegex.findall('RoboCop eats')
+r'[^aeiouAEIOU]'
+search: RoboCop eats
+
+matches:
 >>> ['R', 'b', 'C', 'p', ' ', 't', 's']
 
 The Caret at start of regex (^)
 match most occur at the beginning 
 ---------------------------------
-beginsWithHello = re.compile(r'^Hello')
-beginsWithHello.search('Hello, world!')
->>> <re.Match object; span=(0, 5), match='Hello'>
-beginsWithHello.search('He said hello.') == None
->>> True
+r'^Hello'
+search: Hello, world!
+
+matches:
+>>> Hello
+
+search: He said hello.
+>>> None
 
 
 Dollar Sign Characters ($)
 match occurs at the end
 --------------------------
-endsWithNumber = re.compile(r'\d$')
-endsWithNumber.search('Your number is 42')
->>> <re.Match object; span=(16, 17), match='2'>
-endsWithNumber.search('Your number is forty two.') == None
->>> True
+r'\d$')
+search: Your number is 42
 
- r'^\d+$' start and end as digits
- --------------------------------
-wholeStringIsNum = re.compile(r'^\d+$')
-wholeStringIsNum.search('1234567890')
- >>> <re.Match object; span=(0, 10), match='1234567890'>
-wholeStringIsNum.search('12345xyz67890') == None
- >>> True
-wholeStringIsNum.search('12 34567890') == None
- >>> True
+matches:
+>>> 2
 
-The Wildcard Character (.)
---------------------------
-atRegex = re.compile(r'.at')
-atRegex.findall('The cat in the hat sat on the flat mat.')
->>> ['cat', 'hat', 'sat', 'lat', 'mat']
+search: Your number is forty two.
+>>> None
 
-Matching Everything with Dot-Star (.*)
-match any character except for a newline.
------------------------------------------
-nameRegex = re.compile(r'First Name: (.*) Last Name: (.*)')
-mo = nameRegex.search('First Name: Al Last Name: Sweigart')
-mo.group(1)
->>> 'Al'
-mo.group(2)
->>> 'Sweigart'
+ r'^\d+$' start and end as digits (\d+$)
+ ---------------------------------------
+r'^\d+$'
+search: 1234567890
+
+matches:
+ >>> 1234567890
+
+search: 12345xyz67890
+
+matches:
+ >>> None
+
+Matching Everything except newline with Dot-Star (.*)
+-----------------------------------------------------
+r'First Name: (.*) Last Name: (.*)'
+search('First Name: Al Last Name: Sweigart')
 -
 
-The dot-star uses greedy mode use (.*?) for non greedy
-------------------------------------------------------
-nongreedyRegex = re.compile(r'<.*?>')
-mo = nongreedyRegex.search('<To serve man> for dinner.>')
-mo.group()
->>> '<To serve man>'
+matches
+>>> 'Al'
+>>> 'Sweigart'
 
-greedyRegex = re.compile(r'<.*>')
-mo = greedyRegex.search('<To serve man> for dinner.>')
-mo.group()
+
+The dot-star uses greedy mode for non greedy (.*?)
+--------------------------------------------------
+r'<.*?>'
+search: <To serve man> for dinner.>
+
+matches:
+>>> <To serve man>
+
+r'<.*>'
+search: <To serve man> for dinner.>
+-
+
+matches
 >>> '<To serve man> for dinner.>'
 -
 
