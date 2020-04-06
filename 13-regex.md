@@ -6,15 +6,46 @@ https://www.hackerrank.com/domains/regex
 http://www.restore.ac.uk/geo-refer/38330mtuks00y19740000.php
 ---------------------
 
+Review of Regex Symbols Meaning
+-------------------------------
+
+. ^ $ * + ? {n} {n,m}? \ [] () | \d \w \s \D \W \S \A \b \B \Z 
+
+. matches any character, except newline characters.
+^spam means the string must begin with spam.
+$ Matches the end of the string
+* matches zero or more of the preceding group.
++ matches one or more of the preceding group.
+? matches zero or one of the preceding group.
+{n} matches exactly n of the preceding group.
+{n,} matches n or more of the preceding group.
+{,m} matches 0 to m of the preceding group.
+{n,m} matches at least n and at most m of the preceding group.
+{n,m}? or *? or +? performs a non-greedy match of the preceding group.
+\ Either escapes special characters or signals a special sequence
+[abc] matches any character between the brackets (such as a, b, or c).
+[^abc] matches any character that isn’t between the brackets.
+(?:aiLmsux) matches the characters aiLmsux literally (case sensitive)
+(?=...) called 'lookahead' Isaac (?=Asimov) will match 'Isaac ' only if it’s followed by 'Asimov'.
+(?!...) called negative lookahead. Isaac (?!Asimov) match 'Isaac ' if not followed by 'Asimov'.
+(?<=...) called a positive lookbehind assertion. (?<=abc)def will find a match in 'abcdef'
+(?<!...) called negative lookbehind (?!abc)def will match 'def' in 123def because 123 is not abc
+| A|B, creates a regular expression that will match either A or B
+\d, \w, and \s match a digit, word, or space character, respectively.
+\D, \W, and \S match anything except a digit, word, or space character,respectively.
+\b Matches the empty string, but only at the beginning or end of a word
+\B Matches the empty string, but only when it is not at the beginning or end of a word
+\Z Matches only at the end of the string.
+-
+
 import re
 
 phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
 phoneNumRegex = re.compile(r'\d{3}-\d{3}-\d{4}')
 
-07412-712-269
 mo = phoneNumRegex.search('My number is 415-555-4242.')
 print('Phone number found: ' + mo.group())
-Phone number found: 415-555-4242
+>>> Phone number found: 415-555-4242
 
 grouping
 --------
@@ -46,9 +77,6 @@ mo.group(1)
 mo.group(2)
 >>> '555-4242'
 
-special meaning characters
----------------------------
-. ^ $ * + ? { } [ ] \ | ( )
 
 pipe acts like an or
 --------------------
@@ -220,25 +248,6 @@ greedyRegex = re.compile(r'<.*>')
 mo = greedyRegex.search('<To serve man> for dinner.>')
 mo.group()
 >>> '<To serve man> for dinner.>'
--
-
-Review of Regex Symbols
------------------------
-? matches zero or one of the preceding group.
-* matches zero or more of the preceding group.
-+ matches one or more of the preceding group.
-{n} matches exactly n of the preceding group.
-{n,} matches n or more of the preceding group.
-{,m} matches 0 to m of the preceding group.
-{n,m} matches at least n and at most m of the preceding group.
-{n,m}? or *? or +? performs a non-greedy match of the preceding group.
-^spam means the string must begin with spam.
-spam$ means the string must end with spam.
-. matches any character, except newline characters.
-\d, \w, and \s match a digit, word, or space character, respectively.
-\D, \W, and \S match anything except a digit, word, or space character,respectively.
-[abc] matches any character between the brackets (such as a, b, or c).
-[^abc] matches any character that isn’t between the brackets.
 -
 
 Substituting Strings with the sub() Method
