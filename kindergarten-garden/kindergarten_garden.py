@@ -15,9 +15,9 @@ STUDENTS = [
 PLANTS = {"G":"Grass", "C":"Clover", "R":"Radishes", "V":"Violets"}
 
 class Garden:
-    def __init__(self, diagram, students):
+    def __init__(self, diagram, students = STUDENTS):
         self.diagram = diagram.split('\n')
-        self.students = sorted(students) or STUDENTS
+        self.students = sorted(students) 
 
     def plant_rows(self):
         res = []
