@@ -20,22 +20,15 @@ class Garden:
         self.students = sorted(students) 
 
     def plant_rows(self):
-        res = []
         for row in self.diagram:
-            res.append([row[i:i+2] for i in range(0,len(row),2)])
-        return res
+            yield [row[i:i+2] for i in range(0,len(row),2)]
 
-    def fetch_plants(self, student):
-        res = []
-        plant_rows = self.plant_rows()
+    def plant_initials(self, student):
+        plant_rows = list(self.plant_rows())
         for key,plant in enumerate(plant_rows):
-            res.append(plant_rows[key][self.students.index(student)])
-        return res
+            yield plant_rows[key][self.students.index(student)]
 
     def plants(self, student):
-        res = []
-        for initial in ''.join(self.fetch_plants(student)):
-            res.append(PLANTS[initial])
-        return res
+        return [PLANTS[initial] for initial in ''.join(self.plant_initials(student))]
     
 
