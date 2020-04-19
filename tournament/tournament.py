@@ -1,27 +1,3 @@
-def tally(rows):
-    teams = {}
-
-    for (home_team, away_team, result) in [row.split(';') for row in rows]:
-        for team in (home_team, away_team):
-            if team not in teams:
-                teams[team] = Team(team)
-            teams[team].matches_played += 1
-
-        if result == 'win':
-            teams[home_team].wins += 1
-            teams[away_team].losses += 1
-        if result == 'loss':
-            teams[home_team].losses += 1
-            teams[away_team].wins += 1
-        if result == 'draw':
-            teams[home_team].draw += 1
-            teams[away_team].draw += 1
-
-    [team.calculate_points for team in teams.values()]
-
-    return Table(teams).rows()
-
-
 class Team:
     def __init__(self, name):
         self.name = name
@@ -34,31 +10,63 @@ class Team:
     def calculate_points(self):
         self.points = (self.wins * 3) + (self.draws * 1)
 
+class TeamBuilder:
+    def __init__(self, rows):
+        self.rows = [row.split(';') for row in rows]
+        self.teams = {}
+
+    def build(self):
+        for (home_team, away_team, result) in self.rows:
+            for team in (home_team, away_team):
+                if team not in self.teams:
+                    self.teams[team] = Team(team)
+                self.teams[team].matches_played += 1
+
+            if result == 'win':
+                self.teams[home_team].wins += 1
+                self.teams[away_team].losses += 1
+            if result == 'loss':
+                self.teams[home_team].losses += 1
+                self.teams[away_team].wins += 1
+            if result == 'draw':
+                self.teams[home_team].draws += 1
+                self.teams[away_team].draws += 1
+       
+        # calculate points for each team
+        [team.calculate_points() for team in self.teams.values()]
+
+        return self.teams.values()
+
 class Table:
     def __init__(self, teams):
         self.teams = teams
         self.table = []
 
-    @staticmethod
-    def spacing():
+    def spacing(self):
         return "{:31}| {:>2} | {:>2} | {:>2} | {:>2} | {:>2}"
 
-    @staticmethod
-    def header():
-        return f"{Table.spacing()}".format("Team", "MP", "W", "D", "L", "P")
+    def header(self):
+        return f"{self.spacing()}".format("Team", "MP", "W", "D", "L", "P")
+
+    def sort_rows(self, teams):
+        return sorted(teams, key=lambda x: (-x.points, x.name))
 
     def rows(self):
-        self.table.append(Table.header())
+        self.table.append(self.header())
 
-        for team in self.teams.values():
-            row = f"{Table.spacing()}".format(
+        for team in self.sort_rows(self.teams):
+            row = f"{self.spacing()}".format(
                 team.name, 
                 team.matches_played, 
                 team.wins, 
                 team.draws, 
                 team.losses, 
-                team.points
+                team.points,
             )
             self.table.append(row)
-        return self.table
+        return(self.table)
+
+def tally(rows):
+    teams = TeamBuilder(rows).build()
+    return Table(teams).rows()
 
