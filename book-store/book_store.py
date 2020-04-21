@@ -7,11 +7,12 @@ def total(basket):
     groups = []
     price = 0
 
-    while different_count := len(books):
-        price += group_cost[different_count - 1]
-        groups.append(different_count)
+    while group_count := len(books):
+        price += group_cost[group_count - 1]
+        groups.append(group_count)
         for book in books:
             books[book] -= 1
+        # remove books with zero count
         books = +books
 
     # 2 * 4 books are cheaper than 5 + 3 books (5120 = 5160 - 40)
@@ -21,5 +22,3 @@ def total(basket):
         groups.remove(5)
 
     return price
-
-# print(total([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 1, 2]))
