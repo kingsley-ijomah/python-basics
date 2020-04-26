@@ -39,7 +39,9 @@ class Rational:
         return Rational(numer, denom)
 
     def __abs__(self):
-        pass
+        numer = abs(self.numer)
+        denom = abs(self.denom)
+        return Rational(numer, denom)
 
     def __pow__(self, power):
         pass
