@@ -19,7 +19,9 @@ class Rational:
         return '{}/{}'.format(self.numer, self.denom)
 
     def __add__(self, other):
-        pass
+        numer = self.numer * other.denom + self.denom * other.numer
+        denom = self.denom * other.denom
+        return Rational(numer, denom)
 
     def __sub__(self, other):
         pass
