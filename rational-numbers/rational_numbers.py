@@ -34,7 +34,9 @@ class Rational:
         return Rational(numer, denom)
 
     def __truediv__(self, other):
-        pass
+        numer = self.numer * other.denom
+        denom = self.denom * other.numer
+        return Rational(numer, denom)
 
     def __abs__(self):
         pass
