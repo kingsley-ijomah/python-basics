@@ -44,7 +44,9 @@ class Rational:
         return Rational(numer, denom)
 
     def __pow__(self, power):
-        pass
+        numer = pow(self.numer, power)
+        denom = pow(self.denom, power)
+        return Rational(numer, denom)
 
     def __rpow__(self, base):
         pass
