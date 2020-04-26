@@ -29,7 +29,9 @@ class Rational:
         return Rational(numer, denom)
 
     def __mul__(self, other):
-        pass
+        numer = self.numer * other.numer
+        denom = self.denom * other.denom
+        return Rational(numer, denom)
 
     def __truediv__(self, other):
         pass
