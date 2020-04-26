@@ -24,7 +24,9 @@ class Rational:
         return Rational(numer, denom)
 
     def __sub__(self, other):
-        pass
+        numer = self.numer * other.denom - self.denom * other.numer
+        denom = self.denom * other.denom
+        return Rational(numer, denom)
 
     def __mul__(self, other):
         pass
