@@ -6,6 +6,7 @@ class Rational:
     def __init__(self, numer, denom):
         self.numer, self.denom  = Rational.reduce(numer, denom)
         self.numer = -self.numer if self.denom < 0 else self.numer
+        self.denom = abs(self.denom)
 
     @classmethod
     def reduce(cls, numer, denom):
@@ -49,4 +50,6 @@ class Rational:
         return Rational(numer, denom)
 
     def __rpow__(self, base):
-        pass
+        base = pow(base, self.numer)
+        exp = 1 / self.denom
+        return pow(base, exp)
