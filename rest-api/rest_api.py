@@ -10,17 +10,42 @@ class RestAPI:
                 return json.dumps(self.database)
             else:
                 payload = json.loads(payload)
-                # return [user for user in self.database['users']]
-                result = { "users": [user for user in self.database['users'] if user["name"] in payload["users"]] }
+                result = { "users": [user for user in self.database['users'] 
+                            if user["name"] in payload["users"]] }
                 return json.dumps(result)
 
     def post(self, url, payload=None):
-        if url == '/add' and payload:
+        payload = json.loads(payload)
+
+        if url == '/add':
             return RestAPI.user_parser(payload)
+        if url == '/iou':
+            result = []
+            for user in self.database['users']:
+                if user['name'] == payload['lender']:
+                    user['balance'] += payload['amount']
+                    user['owed_by'] = {payload['borrower']: payload['amount']}
+                elif user['name'] == payload['borrower']:
+                    user['balance'] -= payload['amount']
+                    user['owes'] = { payload['lender']: payload['amount'] }
+                result.append(user)
+            return json.dumps({ 'users': result })
+                    
+
+
+            # get lender
+            lender = [lender for lender in self.database['users']
+                    if lender['name'] == payload['lender']]
+            # get borrower
+            borrower = [borrower for borrower in self.database['users']
+                    if borrower['name'] == payload['borrower']]
+            return borrower
+            # deduct amount from borrower
+            # add deducted abount to lender
+
 
     @classmethod
     def user_parser(cls, payload):
-        payload = json.loads(payload)
         return json.dumps({
             "name": payload["user"], 
             "owes": {}, 
@@ -35,9 +60,9 @@ database = {
     ]
 }
 api = RestAPI(database)
-payload = json.dumps({"users": ["Bob"]})
+payload = json.dumps({"lender": "Adam", "borrower": "Bob", "amount": 3.0})
 
-print(api.get("/users",payload))
+print(api.post("/iou",payload))
 
 
 

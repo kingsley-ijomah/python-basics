@@ -38,23 +38,23 @@ class RestApiTest(unittest.TestCase):
         }
         self.assertDictEqual(json.loads(response), expected)
 
-    # def test_both_users_have_0_balance(self):
-    #     database = {
-    #         "users": [
-    #             {"name": "Adam", "owes": {}, "owed_by": {}, "balance": 0.0},
-    #             {"name": "Bob", "owes": {}, "owed_by": {}, "balance": 0.0},
-    #         ]
-    #     }
-    #     api = RestAPI(database)
-    #     payload = json.dumps({"lender": "Adam", "borrower": "Bob", "amount": 3.0})
-    #     response = api.post("/iou", payload)
-    #     expected = {
-    #         "users": [
-    #             {"name": "Adam", "owes": {}, "owed_by": {"Bob": 3.0}, "balance": 3.0},
-    #             {"name": "Bob", "owes": {"Adam": 3.0}, "owed_by": {}, "balance": -3.0},
-    #         ]
-    #     }
-    #     self.assertDictEqual(json.loads(response), expected)
+    def test_both_users_have_0_balance(self):
+        database = {
+            "users": [
+                {"name": "Adam", "owes": {}, "owed_by": {}, "balance": 0.0},
+                {"name": "Bob", "owes": {}, "owed_by": {}, "balance": 0.0},
+            ]
+        }
+        api = RestAPI(database)
+        payload = json.dumps({"lender": "Adam", "borrower": "Bob", "amount": 3.0})
+        response = api.post("/iou", payload)
+        expected = {
+            "users": [
+                {"name": "Adam", "owes": {}, "owed_by": {"Bob": 3.0}, "balance": 3.0},
+                {"name": "Bob", "owes": {"Adam": 3.0}, "owed_by": {}, "balance": -3.0},
+            ]
+        }
+        self.assertDictEqual(json.loads(response), expected)
 
     # def test_borrower_has_negative_balance(self):
     #     database = {
