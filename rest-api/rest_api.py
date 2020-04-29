@@ -24,25 +24,13 @@ class RestAPI:
             for user in self.database['users']:
                 if user['name'] == payload['lender']:
                     user['balance'] += payload['amount']
-                    user['owed_by'] = {payload['borrower']: payload['amount']}
+                    user['owed_by'][payload['borrower']] = payload['amount']
+                    result.append(user)
                 elif user['name'] == payload['borrower']:
                     user['balance'] -= payload['amount']
-                    user['owes'] = { payload['lender']: payload['amount'] }
-                result.append(user)
+                    user['owes'][payload['lender']] =  payload['amount']
+                    result.append(user)
             return json.dumps({ 'users': result })
-                    
-
-
-            # get lender
-            lender = [lender for lender in self.database['users']
-                    if lender['name'] == payload['lender']]
-            # get borrower
-            borrower = [borrower for borrower in self.database['users']
-                    if borrower['name'] == payload['borrower']]
-            return borrower
-            # deduct amount from borrower
-            # add deducted abount to lender
-
 
     @classmethod
     def user_parser(cls, payload):
@@ -56,9 +44,11 @@ class RestAPI:
 database = {
     "users": [
         {"name": "Adam", "owes": {}, "owed_by": {}, "balance": 0.0},
-        {"name": "Bob", "owes": {}, "owed_by": {}, "balance": 0.0},
+        {"name": "Bob", "owes": {"Chuck": 3.0}, "owed_by": {}, "balance": -3.0},
+        {"name": "Chuck", "owes": {}, "owed_by": {"Bob": 3.0}, "balance": 3.0},
     ]
 }
+
 api = RestAPI(database)
 payload = json.dumps({"lender": "Adam", "borrower": "Bob", "amount": 3.0})
 
