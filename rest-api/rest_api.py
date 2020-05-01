@@ -30,14 +30,16 @@ class RestAPI:
 
             return json.dumps({'users': [lender, borrower]})
 
+
 database = {
-    "users": [
-        {"name": "Adam", "owes": {}, "owed_by": {}, "balance": 0.0},
-        {"name": "Bob", "owes": {}, "owed_by": {}, "balance": 0.0},
-    ]
-}
+        "users": [
+            {"name": "Adam", "owes": {}, "owed_by": {}, "balance": 0.0},
+            {"name": "Bob", "owes": {"Chuck": 3.0}, "owed_by": {}, "balance": -3.0},
+            {"name": "Chuck", "owes": {}, "owed_by": {"Bob": 3.0}, "balance": 3.0},
+        ]
+    }
 api = RestAPI(database)
-payload = json.dumps({"lender": "Adam", "borrower": "Bob", "amount": 3.0})
+payload = json.dumps({"lender": "Bob", "borrower": "Adam", "amount": 3.0})
 print(api.post("/iou",payload))
 
 
