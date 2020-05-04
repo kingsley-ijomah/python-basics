@@ -32,3 +32,9 @@ Regex_Pattern = r'^\d+[A-Z]+[a-z]+$'
 
 # Matching Ending Items ( Kites )
 Regex_Pattern = r'^[a-zA-Z]*e?s'
+
+# Matching Word Boundaries ( Found any match? )
+Regex_Pattern = r'\b[aeiouAEIOU][a-z]*\b'
+
+# Capturing & Non-Capturing Groups ( okokok! cya )
+Regex_Pattern = r'(ok){3}'
