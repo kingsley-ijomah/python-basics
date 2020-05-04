@@ -24,4 +24,11 @@ r"^\d\w{4}\.$"
 # Excluding Specific Characters ( think? )
 Regex_Pattern = r'^[^0-9][^aeiou][^bcDF][^\s][^AEIOU][^.,]$'
 
+# Matching Character Ranges ( h4CkR )
+Regex_Pattern = r'^[a-z][1-9][^a-z][^A-Z][A-Z].*'
 
+# Matching One Or More Repetitions ( 1Qa )
+Regex_Pattern = r'^\d+[A-Z]+[a-z]+$'
+
+# Matching Ending Items ( Kites )
+Regex_Pattern = r'^[a-zA-Z]*e?s'
