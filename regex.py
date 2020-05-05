@@ -41,3 +41,6 @@ Regex_Pattern = r'(ok){3}'
 
 # Matching {x, y} Repetitions ( 3threeormorealphabets. )
 Regex_Pattern = r'^\d{1,2}[a-zA-Z]{3,}\.{0,3}$'
+
+# Matching Same Text Again & Again ( ab #1?AZa$ab #1?AZa$ )
+Regex_Pattern = r'(^[a-z])(\w)(\s)([^\w])(\d)([^\d])([A-Z])([a-zA-Z])([a|e|i|o|u|A|E|I|O|U])([^\s])\1\2\3\4\5\6\7\8\9\10'
