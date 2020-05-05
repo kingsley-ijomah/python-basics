@@ -38,3 +38,6 @@ Regex_Pattern = r'\b[aeiouAEIOU][a-z]*\b'
 
 # Capturing & Non-Capturing Groups ( okokok! cya )
 Regex_Pattern = r'(ok){3}'
+
+# Matching {x, y} Repetitions ( 3threeormorealphabets. )
+Regex_Pattern = r'\d{1,2}[a-zA-Z]{3,}\.{0,3}'
