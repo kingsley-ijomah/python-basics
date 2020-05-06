@@ -44,3 +44,6 @@ Regex_Pattern = r'^\d{1,2}[a-zA-Z]{3,}\.{0,3}$'
 
 # Matching Same Text Again & Again ( ab #1?AZa$ab #1?AZa$ )
 Regex_Pattern = r'(^[a-z])(\w)(\s)([^\w])(\d)([^\d])([A-Z])([a-zA-Z])([a|e|i|o|u|A|E|I|O|U])([^\s])\1\2\3\4\5\6\7\8\9\10'
+
+# Backreferences To Failed Groups ( 12345678 or 12-34-56-78 )
+Regex_Pattern = r'^\d{2}(-?)\d{2}\1\d{2}\1\d{2}$'
