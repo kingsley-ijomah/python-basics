@@ -47,3 +47,6 @@ Regex_Pattern = r'(^[a-z])(\w)(\s)([^\w])(\d)([^\d])([A-Z])([a-zA-Z])([a|e|i|o|u
 
 # Backreferences To Failed Groups ( 12345678 or 12-34-56-78 )
 Regex_Pattern = r'^\d{2}(-?)\d{2}\1\d{2}\1\d{2}$'
+
+# Positive Lookahead (gooooo! Number of matches : 3)
+Regex_Pattern = r'o(?=oo)'
