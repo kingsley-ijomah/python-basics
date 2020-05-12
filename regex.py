@@ -50,3 +50,6 @@ Regex_Pattern = r'^\d{2}(-?)\d{2}\1\d{2}\1\d{2}$'
 
 # Positive Lookahead (gooooo! Number of matches : 3)
 Regex_Pattern = r'o(?=oo)'
+
+# Matching {x} Repetitions ( 2222222222aaaaaaaaaa2222222222aaaaaaaaaa13 57 )
+Regex_Pattern = r'^([a-zA-Z02468]){40}[13579\s]{5}$'
