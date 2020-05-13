@@ -7,7 +7,7 @@ regex_pattern = r"^...\....\....\....$"
 Regex_Pattern = r"^\d{2}[^\d]{1}\d{2}[^\d]{1}\d{4}"
 
 # Matching Whitespace & Non-Whitespace Character ( 12 11 15 )
-Regex_Pattern = r"\d{2}\s\d{2}\s\d{2}"
+Regex_Pattern = r"^[^\s]{2}\s[^\s]{2}\s[^\s]{2}$"
 
 # Matching Word & Non-Word Character ( www.hackerrank.com )
 r"\w{3}\W{1}\w{10}\W{1}\w{3}"
